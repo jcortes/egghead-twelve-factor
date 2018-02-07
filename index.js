@@ -23,6 +23,8 @@ const handler = baseImgUrl
   ? proxy(baseImgUrl, proxyOptions)
   : express.static(dir);
 
+// BASE_IMG_URL=https://cdn.pixabay.com/photo/2017/10/12/20/12
+// abstract-2845763_960_720.jpg
 app.use("/images", handler);
 
 app.listen(8080);
