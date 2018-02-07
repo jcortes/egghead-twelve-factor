@@ -1,0 +1,23 @@
+{
+  "name": "egghead-twelve-factor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bar.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcortes/egghead-twelve-factor.git"
+  },
+  "keywords": [],
+  "author": "Jorge Cortes <jacortesmahmud@gmail.com> (http://jcortes.github.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcortes/egghead-twelve-factor/issues"
+  },
+  "homepage": "https://github.com/jcortes/egghead-twelve-factor#readme",
+  "dependencies": {
+    "dotenv": "^5.0.0"
+  }
+}
