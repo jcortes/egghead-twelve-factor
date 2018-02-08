@@ -4,6 +4,8 @@ services:
   egghead-twelve-factor:
     image: egghead-twelve-factor
     build: .
+    env_file:
+      - .env
     environment:
       NODE_ENV: production
     ports:
