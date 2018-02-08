@@ -28,29 +28,28 @@ const imageHandler = baseImgUrl
 const uploadsHandler = express.static(uploadsDir);
 
 const form = `
-  <form action="/upload" enctype="miltipart/form-data" method="post">
+  <form action="/upload" enctype="multipart/form-data" method="post">
     <input type="file" name="foo" /> <br><br>
     <input type="submit" value="Upload" />
   </form>
 `;
 
-// const formHandler = (req, res) => {
-//   console.log("res.send", res.send);
-//   res.send(form);
-// };
+const formHandler = (req, res) => {
+  res.send(form);
+};
 
-const uploadHandler = ({ files }, { status, send }) => {
-  if (!files) {
-    return status(400).send("No files were uploaded!");
+const uploadHandler = (req, res) => {
+  if (!req.files) {
+    return res.status(400).send("No files were uploaded!");
   }
-  const { foo } = files;
+  const { foo } = req.files;
   const uploadTo = `uploads/${foo.name}`;
   foo.mv(uploadTo, err => {
     if (err) {
-      return status(500).send(err);
+      return res.status(500).send(err);
     }
     const link = `<a href="${uploadTo}">${uploadTo}</a>`;
-    send(`File uploaded to ${link}`);
+    res.send(`File uploaded to ${link}`);
   });
 };
 
@@ -59,9 +58,7 @@ const uploadHandler = ({ files }, { status, send }) => {
 app.use("/images", imageHandler);
 app.use(fileUpload());
 app.use("/uploads", uploadsHandler);
-app.get("/", (req, res) => {
-  res.send(form);
-});
+app.get("/", formHandler);
 app.post("/upload", uploadHandler);
 
 const server = app.listen(8080, () => {
