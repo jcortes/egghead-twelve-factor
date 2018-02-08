@@ -34,9 +34,10 @@ const form = `
   </form>
 `;
 
-const formHandler = (req, { send }) => {
-  send(form);
-};
+// const formHandler = (req, res) => {
+//   console.log("res.send", res.send);
+//   res.send(form);
+// };
 
 const uploadHandler = ({ files }, { status, send }) => {
   if (!files) {
@@ -58,7 +59,9 @@ const uploadHandler = ({ files }, { status, send }) => {
 app.use("/images", imageHandler);
 app.use(fileUpload());
 app.use("/uploads", uploadsHandler);
-app.get("/", formHandler);
+app.get("/", (req, res) => {
+  res.send(form);
+});
 app.post("/upload", uploadHandler);
 
 const server = app.listen(8080, () => {
