@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  helloworld:
+    image: helloworld
+    restart: always
